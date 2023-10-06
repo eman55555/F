@@ -7,7 +7,7 @@ class HomeScreen extends StatefulWidget {
   var data;
   HomeScreen({this.password, this.username, this.data, super.key});
 
-  //  x = x;  this.x  //ali = ahmed // this.ahmed
+  
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
