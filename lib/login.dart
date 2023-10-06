@@ -2,7 +2,9 @@ import 'package:day_8/home.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({super.key, required this.title});
+
+  final String title;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -18,104 +20,99 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Color.fromARGB(255, 233, 226, 230),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
-        child: Column(
+      body: Center(
+        child: ListView(
           children: [
-            const Center(
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.diamond,
-                    size: 50,
-                    color: Color.fromARGB(255, 69, 32, 19),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    "SHRINE",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 69, 32, 19),
-                    ),
-                  )
-                ],
+            const SizedBox(
+              height: 100,
+            ),
+            Icon(
+              Icons.diamond,
+              size: 50,
+              color: Color.fromARGB(255, 69, 32, 19),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              "SHRINE",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Color.fromARGB(255, 69, 32, 19),
               ),
             ),
-            Spacer(),
-            Column(
-              children: [
-                TextField(
-                  controller: _usernameController,
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color.fromARGB(197, 204, 196, 204),
-                      labelText: 'Username',
-                      labelStyle: TextStyle(fontSize: 19)),
-                ),
-                SizedBox(height: 15.0),
-                TextField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color.fromARGB(197, 204, 196, 204),
-                      labelText: 'Password',
-                      labelStyle: TextStyle(fontSize: 19)),
-                  obscureText: true,
-                ),
-              ],
+            SizedBox(
+              height: 15,
             ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _usernameController,
+                decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Color.fromARGB(197, 204, 196, 204),
+                    labelText: 'Username',
+                    labelStyle: TextStyle(fontSize: 19)),
+              ),
+            ),
+
+// spacer
+            const SizedBox(height: 12.0),
+// [Password]
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _passwordController,
+                decoration: const InputDecoration(
+                    filled: true,
+                    labelText: 'Password',
+                    fillColor: Color.fromARGB(197, 204, 196, 204),
+                    labelStyle: TextStyle(fontSize: 19)),
+                obscureText: true,
+              ),
+            ),
+
             OverflowBar(
               alignment: MainAxisAlignment.end,
-              children: <Widget>[
+              children: [
+                // TODO: Add buttons (101)
                 TextButton(
-                  child: Text(
-                    'CANCEL',
-                    style: TextStyle(fontSize: 18, color: Colors.purple[700]),
-                  ),
+                  child: const Text('CANCEL'),
                   onPressed: () {
                     _usernameController.clear();
                     _passwordController.clear();
+                    // TODO: Clear the text fields (101)
                   },
                 ),
-                // const SizedBox(
-                //   width: 5,
-                // ),
+                // TODO: Add an elevation to NEXT (103)
+                // TODO: Add a beveled rectangular border to NEXT (103)
                 Padding(
                   padding: const EdgeInsets.all(5),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0)),
-                      // padding:
-                      //     EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      backgroundColor: Colors.white,
-
-                      // ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        'NEXT',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.purple[700],
-                        ),
-                      ),
-                    ),
+                    child: const Text('NEXT'),
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HomeScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(
+                              data: "Welcome , your data :",
+                              username: "${_usernameController.text}",
+                              password: "${_passwordController.text}",
+                            ),
+                          ));
+
+                      // TODO: Show the next page (101)
                     },
                   ),
                 ),
               ],
             ),
-            Spacer(),
           ],
         ),
       ),
