@@ -1,17 +1,19 @@
-import 'package:day_8/login.dart';
+import 'package:day_8/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: const LoginScreen(),
-    //debugShowCheckedModeBanner: false,
-    theme: ThemeData().copyWith(
-      // change the focus border color of the TextField
-      colorScheme: ThemeData().colorScheme.copyWith(
-            primary: Colors.purple[700],
-            // background: const Color.fromARGB(115, 189, 23, 23),
-          ),
-      // change the focus border color when the errorText is set
+    home: const HomeScreen(title: 'SHRINE'),
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      //  colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      useMaterial3: true,
     ),
   ));
 }
+// to change launcher icon :
+
+// 1- flutter pub run flutter_launcher_icons
+//2-Create a folder called asset in the root directory
+//3- Add flutter_icons inside the pubspec.yaml 
+//4- flutter pub get
