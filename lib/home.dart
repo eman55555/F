@@ -24,8 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 AspectRatio(
                     aspectRatio: 18.0 / 11.0,
                     child: Icon(
-                      Icons.diamond_sharp,
-                      size: 50,
+                      Icons.diamond_outlined,
+                      size: 60,
                       color: Colors.brown[700],
                     )
                     // Image.asset('assets/diamond.png'),
