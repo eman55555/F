@@ -1,22 +1,71 @@
-import 'package:day_8/models/task_model.dart';
+
 import 'package:day_8/models/user_model.dart';
 import 'package:flutter/material.dart';
 
-class AppViewModel extends ChangeNotifier {
-  List<Task> tasks = <Task>[];
-  User user = User("Eman");
+import '../models/task_model.dart';
 
-  int get taskCount => tasks.length;
-  int get numTasksRemaining => tasks.where((task) => !task.complete).length;
-  
+
+class AppViewModel extends ChangeNotifier {
+
+  List<Task>  tasks = <Task>[];
+
+  User user = User('Eman Hamad ');
+
+  // Model connected with view Model
+
+//method to add task
+
+void addTask ( Task newTask ){
+  tasks.add(newTask);
+  //step
+  notifyListeners();
+}
+
+
+void setTaskvalu(int taskindex , bool taskvalu){
+
+  tasks[taskindex].complete = taskvalu;
+  notifyListeners();
+}
+
+  //  int numbeoftasks(){return tasks.length;}
+  int get numberoftasks => tasks.length;
+
+
   String get username => user.username;
+
+
+  int get remaintasks => tasks.where((tasks) => !tasks.complete).length;
+
+  // int remian(){
+  //
+//  add condtion
+
+  // return !tasks.completed).length;
+  // }
+
+
+String getTaskTile(int taskindex){
+
+  return tasks[taskindex].title;
+}
+
+  bool getTaskCpml(int taskindex){
+
+    return tasks[taskindex].complete;
+  }
 
 
   void deleteTask(int taskIndex) {
     tasks.removeAt(taskIndex);
     notifyListeners();
   }
-    void updateUsername(String newUsername) {
+
+
+
+
+
+  void updateUsername(String newUsername) {
     user.username = newUsername;
     notifyListeners();
   }
@@ -30,41 +79,18 @@ class AppViewModel extends ChangeNotifier {
     tasks = tasks.where((task) => !task.complete).toList();
     notifyListeners();
   }
-  void addTask(Task newTask) {
-    tasks.add(newTask);
-    notifyListeners();
-  }
 
-   String getTaskTitle(int taskIndex) {
-    return tasks[taskIndex].title;
-  }
 
-  //  void setTaskTitle(int taskIndex , String title) {
-  //   tasks[taskIndex].title = title;
-  //   notifyListeners();
-  // }
 
-  void buildBottomSheet(BuildContext context, Widget bottomSheet) {
+  void bottomSheetBuilder(Widget bottomSheetView, BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: ((context) {
-          return bottomSheet;
-        }),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)));
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      context: context,
+      builder: ((context) {
+        return bottomSheetView;
+      }),);
   }
-
-  bool getTaskStatus(int taskIndex) {
-    return tasks[taskIndex].complete;
-  }
-
-  void setTaskStatus(int taskIndex, bool status) {
-    tasks[taskIndex].complete = status;
-    notifyListeners();
-  }
-
-  Color color1 = const Color.fromARGB(255, 21, 12, 12);
-  Color color2 = const Color.fromARGB(255, 152, 79, 79);
-  Color color3 = Colors.grey.shade800;
-  Color color4 = Colors.grey.shade900;
 }
+
+

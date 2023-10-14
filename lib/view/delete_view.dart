@@ -1,33 +1,32 @@
-import 'package:day_8/view_models/app_view_model.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
+import '../view_models/app_view_model.dart';
 
-class DeleteBottomSheet extends StatelessWidget {
-  const DeleteBottomSheet({super.key});
+
+
+class DeleteBottomSheetView extends StatelessWidget {
+  const DeleteBottomSheetView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<AppViewModel>(builder: (context, viewModel, child) {
       return Container(
-       // color: Colors.grey,
-        height: 125,
+        height: 200,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              
                 onPressed: () {
                   viewModel.deleteAllTasks();
                   Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(
-                    foregroundColor: viewModel.color1,
-                    backgroundColor: Colors.red.shade300,
+
                     textStyle:
-                        TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                    TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                 child: Text("Delete All")),
@@ -40,10 +39,9 @@ class DeleteBottomSheet extends StatelessWidget {
                   Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(
-                    foregroundColor: viewModel.color1,
-                    backgroundColor:  Colors.red.shade300,
+
                     textStyle:
-                        TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                    TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                 child: Text("Delete Completed")),
